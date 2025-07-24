@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Анализатор кода</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+</head>
+<body>
+  <div class="app-container">
+    <div class="panel">
+      <h1>Анализатор кода</h1>
+
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('code-tab')">Анализ кода</div>
+        <div class="tab" onclick="switchTab('repo-tab')">Анализ репозитория</div>
+      </div>
+
+      <div id="code-tab" class="tab-content active">
+        <textarea id="codeInput" placeholder="Вставьте ваш код здесь..."></textarea>
+        <button onclick="analyze('code')">Проанализировать код</button>
+
+        <div class="output-container" id="output">
+          <div id="single-result"></div>
+          <div id="code-analysis-container"></div>
+        </div>
+      </div>
+
+      <div id="repo-tab" class="tab-content">
+        <input type="text" id="githubUrl" placeholder="https://github.com/username/repository">
+        <button onclick="analyze('repo')">Проанализировать репозиторий</button>
+
+        <div class="output-container" id="repo-output">
+          <div id="repo-info-container"></div>
+          <div id="repo-analysis-container"></div>
+          <div id="repo-single-result"></div>
+          <div id="repo-results-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="chart-wrapper">
+        <div class="chart-container">
+          <canvas id="chart"></canvas>
+        </div>
+        <div class="chart-legend" id="chart-legend"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+:root {
+  --dark-blue: #0a192f;
+  --navy: #172a45;
+  --light-navy: #303f60;
+  --lightest-navy: #465881;
+  --black: #020c1b;
+  --white: #e6f1ff;
+  --accent: #64ffda;
+  --accent-dark: #52d1b3;
+  --danger: #ff6584;
+  --warning: #ffb347;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--black);
+  color: var(--white);
+  min-height: 100vh;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.app-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  height: calc(100vh - 40px);
+}
+
+.panel {
+  background: var(--dark-blue);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(2, 12, 27, 0.5);
+  border: 1px solid var(--light-navy);
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--light-navy);
+}
+
+.tab {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--white);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-size: 0.9rem;
+}
+
+.tab.active {
+  opacity: 1;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+textarea, input {
+  width: 100%;
+  padding: 12px;
+  background: var(--navy);
+  border: 1px solid var(--light-navy);
+  border-radius: 5px;
+  color: var(--white);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+textarea {
+  resize: none;
+  height: 180px;
+  flex-shrink: 0;
+}
+
+button {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  padding: 10px 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background: rgba(100, 255, 218, 0.1);
+}
+
+.output-container {
+  margin-top: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  max-height: 600px;
+  overflow-y: auto;
+  background: var(--navy);
+  border: 1px solid var(--light-navy);
+  border-radius: 5px;
+  padding: 12px;
+}
+
+.chart-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chart-container {
+  height: 65%;
+  min-height: 200px;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--light-navy);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--lightest-navy);
+}
+
+.chart-legend {
+  margin-top: 15px;
+  padding: 12px;
+  background: var(--navy);
+  border: 1px solid var(--light-navy);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-height: 30%;
+  overflow-y: auto;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 3px;
+  font-size: 0.8rem;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: 6px;
+}
+
+.file-result {
+  padding: 8px;
+  margin-bottom: 6px;
+  background: var(--light-navy);
+  border-radius: 3px;
+  font-size: 0.85rem;
+}
+
+.repo-info {
+  margin-bottom: 15px;
+  padding: 12px;
+  background: var(--light-navy);
+  border-radius: 5px;
+}
+
+.repo-info-item {
+  margin-bottom: 8px;
+  display: flex;
+}
+
+.repo-info-label {
+  font-weight: 500;
+  color: var(--accent);
+  min-width: 120px;
+}
+
+.repo-analysis {
+  margin-bottom: 15px;
+  padding: 12px;
+  background: var(--light-navy);
+  border-radius: 5px;
+  font-style: italic;
+}
+
+.code-display {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  background: var(--navy);
+  border: 1px solid var(--light-navy);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre;
+  line-height: 1.5;
+}
+
+.code-line {
+  padding: 2px 5px;
+  margin: 1px 0;
+}
+
+.dangerous-line {
+  background-color: rgba(255, 101, 132, 0.2);
+  border-left: 3px solid var(--danger);
+  color: var(--white);
+}
+
+.threat-info {
+    margin-top: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 12px;
+    background: var(--light-navy);
+    border-radius: 5px;
+}
+
+.threat-item {
+  margin-bottom: 10px;
+  padding: 10px;
+  background: rgba(255, 101, 132, 0.1);
+  border-left: 3px solid var(--danger);
+  border-radius: 3px;
+}
+
+.threat-line {
+  font-weight: bold;
+  color: var(--danger);
+}
+
+.threat-code {
+  font-family: 'IBM Plex Mono', monospace;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 4px;
+  border-radius: 3px;
+  margin: 5px 0;
+  display: inline-block;
+}
+
+.threat-reason {
+  font-size: 0.85rem;
+}
+
+.code-container {
+  display: flex;
+  gap: 20px;
+  margin-top: 15px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+
+.code-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.result-status {
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status-safe {
+  background-color: rgba(100, 255, 218, 0.2);
+  color: var(--accent);
+}
+
+.status-danger {
+  background-color: rgba(255, 101, 132, 0.2);
+  color: var(--danger);
+}
+
+.status-warning {
+  background-color: rgba(255, 179, 71, 0.2);
+  color: var(--warning);
+}
+
+@media (max-width: 1200px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+
+  .code-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  textarea {
+    height: 150px;
+  }
+
+  .repo-info-item {
+    flex-direction: column;
+  }
+
+  .repo-info-label {
+    margin-bottom: 3px;
+  }
+
+  .output-container {
+    max-height: none;
+  }
+}
